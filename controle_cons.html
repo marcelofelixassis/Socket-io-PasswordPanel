@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="main.css">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+		<script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+		<title>Atendimento - Consultório</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row main">
+				<div class="main-login main-center">
+					<form class="form-horizontal" id="formulario">
+						
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="nome" placeholder="Nome" maxlength="17" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-heartbeat fa" aria-hidden="true"></i></span>
+									<input type="text" pattern="\d*" class="form-control" name="numero" placeholder="Consultório" maxlength="2" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-university fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="numero_sala" placeholder="Sala" maxlength="3" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button class="btn-danger">Chamar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+	  $(function () {
+	  	var infos = [];
+	    var socket = io.connect('http://10.16.90.8:3000');
+	    $('form').submit(function(){
+	    	infos = $('#formulario').serializeArray();
+				infos.push({value: "CONSULTÓRIO"});
+				infos.push({value: "NÚMERO"});
+	      socket.emit('chat message', infos);
+	      $('#m').val('');
+	      return false;
+	    });
+	  });
+	</script>
+</html>
