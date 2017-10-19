@@ -1,82 +1,47 @@
 <!doctype html>
 <html>
   <head>
-    <title>Atendimento</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css" type="text/css">
 
-    <script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <title>Atendimento - Painel</title>
   </head>
 
   <body>
     <div class="container">
-      <div class="row" id="first_row">
+      <div class="row margin_row">
         <div class="col-md-8">
-          <div class="container_name">
-            <font id="nome"></font>
+          <div class="container_grey">
+            <font id="nome">-</font>
           </div>
-          <div class="row">
+          <div class="row margin_row">
             <div class="col-md-12">
-              <div class="jumbotron" style="text-align: center;">
-                <h1 style="font-size: 70px;" id="tipo"></h1>
-                <h1 style="font-size: 40px" id="senha_numero"></h1>
-                <font style="font-size: 267px" id="numero"></font>
-                <h1 style="font-size: 47px" id="numero_sala"></h1>
+              <div class="jumbotron">
+                <h1 id="tipo"></h1>
+                <h1 id="senha_numero"></h1>
+                <h1 id="numero"></h1>
+                <h1 id="numero_sala"></h1>
               </div>
             </div><!--/.col-md-12-->
-          </div><!--/row-->
-        </div><!--/span-->
-
-        <div class="col-6 col-md-4 sidebar-offcanvas lista">
-          <a class="list-group-item list-group-item-action flex-column align-items-start"  style="background-color: #eee;">
+          </div><!--/.row-->
+        </div><!--/.col-md-8-->
+        <div class="col-6 col-md-4 sidebar-offcanvas list">
+          <div class="list-group-item flex-column align-items-start container_grey">
             <div class="d-flex w-100 justify-content-between">
-              <h1 style="text-align: center;">Histórico de Chamadas</h1>
+              <h1>Histórico de Chamadas</h1>
             </div>
-          </a>
+          </div>
+          <!--ADD PREVIOUS CALLS-->
           <ul class="list-group">
-
           </ul>
-        </div><!--/span-->
-      </div><!--/row-->
-      <div style="background-color: #eee; padding: 15px; margin-top: -15px; text-align: center; border-radius: 5px;">
-      <h3 class="item-1">Para atendimento ao consultório será chamado pelo nome, atendimento no protocolo pela senha! </h3>
-    </div>
+        </div><!--/.col-6 col-md-4-->
+      </div><!--/.row-->
+      <div class="message">
+        <h3 class="item-1">Para atendimento ao consultório será chamado pelo nome, atendimento no protocolo pela senha!</h3>
+      </div>
     </div><!--/.container-->
-
   </body>
-  <script>
-
-  $(function () {
-    var socket = io.connect('http://10.16.90.8:3000');
-    var anterior = new Array();
-    var contador = 0;
-    var hora, minuto;
-    var d;
-    socket.on('chat message', function(msg){
-      d = new Date();
-      $('#nome').text(msg[0]['value']);
-      $('#tipo').text(msg[3]['value']);
-      $('#numero').text(msg[1]['value']);
-      $('#numero_sala').text('SALA: '+msg[2]['value']);
-      $('#senha_numero').text(msg[4]['value']);
-    
-      if(contador > 0 ){
-        $(".lista ul").prepend('<li class="list-group-item list-group-item-action flex-column align-items-start"><div class="d-flex w-100 justify-content-between"><h3 class="mb-1">'+anterior[0]['value']+'</h3><span class="badge badge-default badge-pill" style="font-size: 20px;">'+hora+':'+minuto+'</span></div><h5>'+anterior[3]['value']+': '+anterior[1]['value']+'</h5><h6>SALA: '+anterior[2]['value']+'</h6></li>');
-      }
-
-      if(contador > 6){
-        $('.list-group li:last-child').remove();
-      }
-
-      var audio = new Audio('som.mp3');
-      audio.play();
-
-      hora = d.getHours();
-      minuto = d.getMinutes();
-      anterior = msg;
-      contador = contador + 1;
-    });
-  });
-</script>
+  <script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="main.js"></script>
 </html>
