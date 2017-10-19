@@ -3,47 +3,20 @@
   <head>
     <title>Atendimento</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css" type="text/css">
+
     <script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-
-    <style type="text/css">
-      .item-1 {
-        position: relative;
-        display: block;
-        
-        width: 100%;
-        
-        animation-duration: 20s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-      }
-
-      .item-1{
-       animation-name: anim-1;
-      }
-
-
-      @keyframes anim-1 {
-        0%{ left: 0%; opacity: 0.3; }
-        8.3% { left: 2%; opacity: 1; }
-        33.33% { left: 3%; opacity: 0.8; }
-        60% { left: 2%; opacity: 0.7; }
-        90% {left: 0%; opacity: 0.4;}
-      }
-    </style>   
   </head>
 
-
-
-  <body style="background-color: #6A5ACD; width: 100%;">
-    <div class="container" style="width: 100%;">
-
-      <div class="row" style="margin-top: 20px;">
+  <body>
+    <div class="container">
+      <div class="row" id="first_row">
         <div class="col-md-8">
-          <div style="background-color: #eee; text-align: center; border-radius: 5px;">
-            <font style="font-size: 80px;" id="nome"></font>
+          <div class="container_name">
+            <font id="nome"></font>
           </div>
-          <div class="row" style="margin-top: 2%;">
+          <div class="row">
             <div class="col-md-12">
               <div class="jumbotron" style="text-align: center;">
                 <h1 style="font-size: 70px;" id="tipo"></h1>
@@ -51,7 +24,7 @@
                 <font style="font-size: 267px" id="numero"></font>
                 <h1 style="font-size: 47px" id="numero_sala"></h1>
               </div>
-            </div><!--/span-->
+            </div><!--/.col-md-12-->
           </div><!--/row-->
         </div><!--/span-->
 
