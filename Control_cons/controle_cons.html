@@ -9,9 +9,6 @@
 		<!-- IMPORT ICONS -->
 	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-		<script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
-    	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-
 		<title>Atendimento - Consultório</title>
 	</head>
 	<body>
@@ -55,18 +52,7 @@
 			</div>
 		</div>
 	</body>
-	<script>
-	  $(function () {
-	  	var infos = [];
-	    var socket = io.connect('http://10.16.90.8:3000');
-	    $('form').submit(function(){
-	    	infos = $('#formulario').serializeArray();
-				infos.push({value: "CONSULTÓRIO"});
-				infos.push({value: "NÚMERO"});
-	      socket.emit('chat message', infos);
-	      $('#m').val('');
-	      return false;
-	    });
-	  });
-	</script>
+	<script src="http://10.16.90.8:3000/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="main.js"></script>
 </html>
